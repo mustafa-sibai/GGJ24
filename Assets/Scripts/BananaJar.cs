@@ -43,6 +43,7 @@ public class BananaJar : MonoBehaviour
             currentText = "Press X to Pickup";
             if (Input.GetButtonDown("Fire3") && enteredBananaJar)
             {
+                
                 currentNumberOfBananas--;
             }
         }

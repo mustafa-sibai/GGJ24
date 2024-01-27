@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MonkeyController : MonoBehaviour
@@ -23,6 +24,8 @@ public class MonkeyController : MonoBehaviour
     [SerializeField] AudioClip deathAudioClip;
     [SerializeField] AudioClip happyAudioClip;
 
+    [SerializeField] TMP_Text NoOfBananastext;
+
     Rigidbody rb;
     Vector3 bananaDirection;
 
@@ -45,6 +48,7 @@ public class MonkeyController : MonoBehaviour
 
     void Update()
     {
+        NoOfBananastext.text = "Player " + playerNumber + "'s Bananas: " + currentHeldBananas;
         //Movement Code
         float horizontal = Input.GetAxis($"Horizontal-{playerNumber}");
         float vertical = Input.GetAxis($"Vertical-{playerNumber}");

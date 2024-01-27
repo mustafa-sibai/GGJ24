@@ -21,6 +21,7 @@ public class Banana : MonoBehaviour
             else
             {
                 collision.gameObject.GetComponent<MonkeyController>().CollectBanana();
+                print("A");
                 Destroy(gameObject);
             }
         }
