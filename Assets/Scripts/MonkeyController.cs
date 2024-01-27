@@ -5,13 +5,22 @@ using UnityEngine;
 public class MonkeyController : MonoBehaviour
 {
     [SerializeField] int playerNumber;
-    [SerializeField] float maxSpeed;
+
+    [SerializeField] float maxMovementSpeed;
     [SerializeField] GameObject aimingSphere;
     [SerializeField] float aimRadius;
+
+    [SerializeField] GameObject bananaPrefab;
+    [SerializeField] float bananaSpeed;
+    [SerializeField] float currentHeldBananas;
+    [SerializeField] float bananaFireRate;
+    Vector3 bananaDirection;
 
     Animator animator;
     Vector3 rightThumbStickLastPosition;
     float speed;
+
+    float bananaFireRateTimer;
 
     void Start()
     {
@@ -30,7 +39,7 @@ public class MonkeyController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, leftThumbStickAngle, 0);
 
             animator.SetBool("Walk", true);
-            speed = maxSpeed;
+            speed = maxMovementSpeed;
         }
         else
         {
@@ -42,7 +51,6 @@ public class MonkeyController : MonoBehaviour
             (Vector3.forward * vertical * speed +
             Vector3.right * horizontal * speed)
             * Time.deltaTime;
-
 
         //Aiming Code
         float rightThumbStickHorizontal = Input.GetAxis($"RightThumbStickHorizontal-{playerNumber}");
@@ -59,5 +67,21 @@ public class MonkeyController : MonoBehaviour
             aimingSphere.transform.position = transform.position + new Vector3(x, y, z);
             rightThumbStickLastPosition = aimingSphere.transform.position;
         }
+
+        //Shooting
+        bananaFireRateTimer += Time.deltaTime;
+        bananaDirection = (aimingSphere.transform.position - transform.position).normalized;
+        if (Input.GetAxis($"RightTrigger-{playerNumber}") > 0 && bananaFireRateTimer > bananaFireRate && currentHeldBananas > 0)
+        {
+            GameObject go = Instantiate(bananaPrefab, transform.position, Quaternion.identity);
+            go.GetComponent<Banana>().Fire(bananaDirection, bananaSpeed);
+            bananaFireRateTimer = 0;
+            currentHeldBananas--;
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawRay(transform.position, bananaDirection * 10);
     }
 }
