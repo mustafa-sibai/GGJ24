@@ -6,6 +6,16 @@ public class Banana : MonoBehaviour
 {
     Vector3 direction;
     float speed;
+    GameObject shooter;
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.tag == "Player")
+        {
+            shooter.GetComponent<MonkeyController>().MakeHappySound();
+            collision.gameObject.GetComponent<MonkeyController>().GetHit();
+        }
+    }
 
     void Start()
     {
@@ -17,9 +27,10 @@ public class Banana : MonoBehaviour
         transform.position += direction * speed * Time.deltaTime;
     }
 
-    public void Fire(Vector3 direction, float speed)
+    public void Fire(Vector3 direction, float speed, GameObject shooter)
     {
         this.direction = direction;
         this.speed = speed;
+        this.shooter = shooter;
     }
 }

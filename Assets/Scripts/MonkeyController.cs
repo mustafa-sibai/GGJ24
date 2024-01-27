@@ -6,6 +6,10 @@ public class MonkeyController : MonoBehaviour
 {
     [SerializeField] int playerNumber;
 
+    [SerializeField] int health;
+
+    [SerializeField] Renderer renderer;
+
     [SerializeField] float maxMovementSpeed;
     [SerializeField] GameObject aimingSphere;
     [SerializeField] float aimRadius;
@@ -14,6 +18,11 @@ public class MonkeyController : MonoBehaviour
     [SerializeField] float bananaSpeed;
     [SerializeField] float currentHeldBananas;
     [SerializeField] float bananaFireRate;
+
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip deathAudioClip;
+    [SerializeField] AudioClip happyAudioClip;
+
     Rigidbody rb;
     Vector3 bananaDirection;
 
@@ -29,10 +38,11 @@ public class MonkeyController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         rb.angularVelocity = Vector3.zero;
     }
+
     void Update()
     {
         //Movement Code
@@ -65,7 +75,7 @@ public class MonkeyController : MonoBehaviour
         float rightThumbStickAngle = Mathf.Atan2(rightThumbStickVertical, rightThumbStickHorizontal);
 
         float x = Mathf.Cos(rightThumbStickAngle) * aimRadius;
-        float y = rightThumbStickLastPosition.y;
+        float y = 0;
         float z = Mathf.Sin(rightThumbStickAngle) * aimRadius;
 
         if (Mathf.Abs(rightThumbStickHorizontal) > .75 || Mathf.Abs(rightThumbStickVertical) > .75)
@@ -79,11 +89,48 @@ public class MonkeyController : MonoBehaviour
         bananaDirection = (aimingSphere.transform.position - transform.position).normalized;
         if (Input.GetAxis($"RightTrigger-{playerNumber}") > 0 && bananaFireRateTimer > bananaFireRate && currentHeldBananas > 0)
         {
-            GameObject go = Instantiate(bananaPrefab, transform.position, Quaternion.identity);
-            go.GetComponent<Banana>().Fire(bananaDirection, bananaSpeed);
+            GameObject go = Instantiate(bananaPrefab, transform.position + bananaDirection, Quaternion.identity);
+            go.GetComponent<Banana>().Fire(bananaDirection, bananaSpeed, gameObject);
             bananaFireRateTimer = 0;
             currentHeldBananas--;
         }
+    }
+
+    public void MakeHappySound()
+    {
+        Invoke("PlayHappySound", 1);
+    }
+
+    void PlayHappySound()
+    {
+        //audioSource.PlayOneShot(happyAudioClip);
+    }
+
+    public void GetHit()
+    {
+        animator.SetTrigger("Spin");
+        StartCoroutine(FlashRed());
+        audioSource.PlayOneShot(happyAudioClip);
+    }
+
+    IEnumerator FlashRed()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            renderer.material.color = Color.red;
+            yield return new WaitForSeconds(0.15f);
+            renderer.material.color = Color.white;
+            yield return new WaitForSeconds(0.15f);
+        }
+
+        yield return null;
+    }
+
+    public void Die()
+    {
+        animator.SetBool("Die", true);
+        audioSource.PlayOneShot(deathAudioClip);
+        Destroy(gameObject, 3);
     }
 
     void OnDrawGizmos()

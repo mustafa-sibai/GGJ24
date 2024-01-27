@@ -60,14 +60,12 @@ public class Player : MonoBehaviour
             animator.SetBool("Walk", false);
         }
     }
+
     private void OnAnimatorIK(int layerIndex)
     {
         animator.SetIKPositionWeight(AvatarIKGoal.LeftFoot, 1);
         animator.SetIKPosition(AvatarIKGoal.LeftFoot, leftTarget.transform.position);
         animator.SetIKRotationWeight(AvatarIKGoal.LeftFoot, 1);
         animator.SetIKRotation(AvatarIKGoal.LeftFoot, leftTarget.transform.rotation);
-
-
-
     }
 }
