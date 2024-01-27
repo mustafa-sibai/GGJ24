@@ -5,6 +5,7 @@ using UnityEngine;
 public class MonkeyController : MonoBehaviour
 {
     Animator animator;
+    [SerializeField] int playerNumber;
     [SerializeField] float maxSpeed;
     float speed;
 
@@ -15,8 +16,8 @@ public class MonkeyController : MonoBehaviour
     float angle;
     void Update()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxis($"Horizontal-{playerNumber}");
+        float vertical = Input.GetAxis($"Vertical-{playerNumber}");
 
         if (Mathf.Abs(horizontal) > 0 || Mathf.Abs(vertical) > 0f)
         {
