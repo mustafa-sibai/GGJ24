@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: b7b20bc931c427e46a8b1918db64e552
 ModelImporter:
-  serializedVersion: 20200
+  serializedVersion: 22200
   internalIDToNameTable:
   - first:
       74: 6720303635017113406
@@ -73,8 +73,10 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'LeftUpperLeg' not found\n"
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -82,7 +84,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -620,10 +622,12 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
+    importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 0
     fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -635,6 +639,7 @@ ModelImporter:
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
+    optimizeBones: 1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -645,6 +650,7 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -658,7 +664,72 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: Colobus_Animations(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Rig
+      parentName: Colobus_Animations(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 39.999996, y: 39.999996, z: 39.999996}
+    - name: root
+      parentName: Rig
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 0.9999998, z: 0.9999998}
+    - name: body
+      parentName: root
+      position: {x: 1.620496e-19, y: -0.000029563904, z: 0.011657226}
+      rotation: {x: 0.98321587, y: -1.8416169e-13, z: 1.8416162e-13, w: 0.18244608}
+      scale: {x: 1, y: 0.9999998, z: 0.9999998}
+    - name: ear.L
+      parentName: body
+      position: {x: -0.004272287, y: 0.003910655, z: 0.00918456}
+      rotation: {x: -0.31635064, y: -0.22855696, z: 0.58554643, w: 0.71050644}
+      scale: {x: 0.9999998, y: 0.99999994, z: 0.99999964}
+    - name: ear.R
+      parentName: body
+      position: {x: 0.004272287, y: 0.003910655, z: 0.00918456}
+      rotation: {x: -0.31635064, y: 0.22855696, z: -0.58554643, w: 0.71050644}
+      scale: {x: 0.9999998, y: 0.99999994, z: 0.99999964}
+    - name: tail.01
+      parentName: body
+      position: {x: 2.9267457e-15, y: -0.00047423327, z: -0.006363027}
+      rotation: {x: -0.5852107, y: 0.00000019927914, z: -0.00000014381918, w: 0.8108814}
+      scale: {x: 1, y: 0.9999996, z: 0.9999986}
+    - name: tail.02
+      parentName: tail.01
+      position: {x: -3.439756e-16, y: 0.004042304, z: 2.9802322e-10}
+      rotation: {x: 0.21538219, y: -0.0000002710701, z: 0.000000046076167, w: 0.97652984}
+      scale: {x: 0.9999999, y: 1, z: 1.0000002}
+    - name: leg.F.L
+      parentName: body
+      position: {x: -0.0027893365, y: -0.00072408817, z: 0.00405252}
+      rotation: {x: -0.0074918345, y: 0.15138948, z: 0.984787, w: 0.08496956}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.000001}
+    - name: leg.B.L
+      parentName: body
+      position: {x: -0.003454281, y: -0.0019531883, z: -0.0055846293}
+      rotation: {x: 0.000000043711402, y: -0, z: 1, w: 0}
+      scale: {x: 1, y: 0.9999999, z: 0.9999999}
+    - name: leg.F.R
+      parentName: body
+      position: {x: 0.0027893365, y: -0.00072408817, z: 0.00405252}
+      rotation: {x: 0.0074918345, y: 0.15138948, z: 0.984787, w: -0.08496956}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.000001}
+    - name: leg.B.R
+      parentName: body
+      position: {x: 0.003454281, y: -0.0019531883, z: -0.0055846293}
+      rotation: {x: -0.000000043711402, y: -0, z: 1, w: 0}
+      scale: {x: 1, y: 0.9999999, z: 0.9999999}
+    - name: Mesh
+      parentName: Colobus_Animations(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 39.999996, y: 39.999996, z: 39.999996}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -669,14 +740,16 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

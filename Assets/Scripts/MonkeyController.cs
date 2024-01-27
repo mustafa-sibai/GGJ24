@@ -14,6 +14,7 @@ public class MonkeyController : MonoBehaviour
     [SerializeField] float bananaSpeed;
     [SerializeField] float currentHeldBananas;
     [SerializeField] float bananaFireRate;
+    Rigidbody rb;
     Vector3 bananaDirection;
 
     Animator animator;
@@ -25,8 +26,13 @@ public class MonkeyController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     }
 
+    private void FixedUpdate()
+    {
+        rb.angularVelocity = Vector3.zero;
+    }
     void Update()
     {
         //Movement Code
