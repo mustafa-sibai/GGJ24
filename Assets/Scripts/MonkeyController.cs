@@ -113,6 +113,11 @@ public class MonkeyController : MonoBehaviour
         audioSource.PlayOneShot(happyAudioClip);
     }
 
+    public void CollectBanana()
+    {
+        currentHeldBananas++;
+    }
+
     IEnumerator FlashRed()
     {
         for (int i = 0; i < 3; i++)
