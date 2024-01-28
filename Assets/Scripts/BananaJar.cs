@@ -16,6 +16,9 @@ public class BananaJar : MonoBehaviour
     [SerializeField] TMP_Text popUpBoxText;
     [SerializeField] TMP_Text numberOfBananasText;
     private string currentText;
+    private MonkeyController currentPlayer;
+
+    [SerializeField] bool retrieveBanana = false;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -24,6 +27,7 @@ public class BananaJar : MonoBehaviour
             enteredBananaJar = true;
             numberOfBananasBox.SetActive(true);
             popUpBox.SetActive(true);
+            currentPlayer = other.GetComponent<MonkeyController>();
         }
     }
 
@@ -38,21 +42,35 @@ public class BananaJar : MonoBehaviour
     {
         popUpBoxText.text = currentText;
         numberOfBananasText.text = currentNumberOfBananas.ToString() + " / " + totalNumberOfBananas.ToString();
-        if (currentNumberOfBananas > 0 )
+        if (currentNumberOfBananas > 0 && enteredBananaJar)
         {
-            currentText = "Press X to Pickup";
-            if (Input.GetButtonDown("Fire3") && enteredBananaJar)
+            if (retrieveBanana)
             {
-                
-                currentNumberOfBananas--;
+                currentText = "Press X to Pickup";
+                if (Input.GetButtonDown("Fire3"))
+                {
+                    currentNumberOfBananas--;
+                    currentPlayer.currentHeldBananas++;
+                }
+            }
+
+            if (!retrieveBanana)
+            {
+                currentText = "Press Y to Dropoff";
+                if (Input.GetButtonDown("Fire3"))
+                {
+                    if (currentPlayer.currentHeldBananas > 0)
+                    {
+                    currentNumberOfBananas++;
+                        currentPlayer.currentHeldBananas--;
+                    }
+                }
             }
         }
 
         if (currentNumberOfBananas <= 0)
         {
             currentText = "NO MORE BANANAS";
-        }
-          
+        }       
     }
-
 }

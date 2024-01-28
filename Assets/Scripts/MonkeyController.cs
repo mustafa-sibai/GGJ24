@@ -17,7 +17,7 @@ public class MonkeyController : MonoBehaviour
 
     [SerializeField] GameObject bananaPrefab;
     [SerializeField] float bananaSpeed;
-    [SerializeField] float currentHeldBananas;
+    public float currentHeldBananas; //Made this public so I can access the player within the monkeyJar
     [SerializeField] float bananaFireRate;
 
     [SerializeField] AudioSource audioSource;
