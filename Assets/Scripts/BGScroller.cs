@@ -17,7 +17,7 @@ public class BGScroller : MonoBehaviour
         float distace = Vector2.Distance(WhenToDestroyBanana.transform.position, transform.position);
         //print(distace);
 
-        if(distace <= d)//180
+        if(distace <= 180)//180
         {
             Destroy(gameObject);
         }

@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
-    public string[] dialogues;
-    private string currentDialogue;
-    private int index;
+    public GameObject[] panels;
+    private int index = 0;
+    private int currentPanelIndex;
 
     void Update()
     {
-        /*if (Input.GetKeyDown("Fire3"))
+        
+            panels[index].gameObject.SetActive(true);
+        
+    }
+
+    public void NextPanel()
+    {
+        if (index < panels.Length)
         {
-            currentDialogue = dialogues[index];
-        }*/
+            panels[index].gameObject.SetActive(false);
+            index++;
+            panels[index].gameObject.SetActive(true);
+        }
+            
+        
+       
     }
 }

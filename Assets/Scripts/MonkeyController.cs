@@ -8,6 +8,10 @@ public class MonkeyController : MonoBehaviour
     [SerializeField] ParticleSystem particleSystem;
     [SerializeField] public int playerNumber;
     [SerializeField] TMP_Text playerNameText;
+    [SerializeField] GameObject playerNamePlate;
+    [SerializeField] GameObject playerBananaNoPlate;
+    [SerializeField] TMP_Text playerBananaNoPlateText;
+
 
     [SerializeField] public int health;
 
@@ -62,6 +66,19 @@ public class MonkeyController : MonoBehaviour
     {
         playerNameText.transform.LookAt(Camera.main.transform);
         playerNameText.transform.rotation = Camera.main.transform.rotation;
+        
+        playerNamePlate.transform.LookAt(Camera.main.transform);
+        playerNamePlate.transform.rotation = Camera.main.transform.rotation;
+        
+        playerBananaNoPlate.transform.LookAt(Camera.main.transform);
+        playerBananaNoPlate.transform.rotation = Camera.main.transform.rotation;
+
+        playerBananaNoPlateText.transform.LookAt(Camera.main.transform);
+        playerBananaNoPlateText.transform.rotation = Camera.main.transform.rotation;
+        playerBananaNoPlateText.text = currentHeldBananas.ToString();
+
+
+
 
         if (NoOfBananastext != null)
             NoOfBananastext.text = "Player " + playerNumber + "'s Bananas: " + currentHeldBananas;
