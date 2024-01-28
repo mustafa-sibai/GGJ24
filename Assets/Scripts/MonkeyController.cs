@@ -60,75 +60,80 @@ public class MonkeyController : MonoBehaviour
 
     void Update()
     {
-        playerNameText.transform.LookAt(Camera.main.transform);
-        playerNameText.transform.rotation = Camera.main.transform.rotation;
-
-        if (NoOfBananastext != null)
-            NoOfBananastext.text = "Player " + playerNumber + "'s Bananas: " + currentHeldBananas;
-
-        //Dodge Code
-        dodgeLerpSlowDownTimer += Time.deltaTime;
-        dodgeCooldownTimer -= Time.deltaTime;
-
-        if (Input.GetButtonDown($"X-{playerNumber}") && dodgeCooldownTimer <= 0)
+        if (GameManager.gameStarted)
         {
-            animator.SetBool("Bounce", true);
-            dodgeVector = transform.forward * dodgeForce;
-            dodgeLerpSlowDownTimer = 0;
-            dodgeCooldownTimer = dodgeCooldown;
-        }
-        else
-        {
-            dodgeVector = Vector3.Lerp(dodgeVector, Vector3.zero, dodgeLerpSlowDownTimer);
-        }
 
-        //Movement Code
-        float horizontal = Input.GetAxis($"Horizontal-{playerNumber}");
-        float vertical = Input.GetAxis($"Vertical-{playerNumber}");
 
-        if (Mathf.Abs(horizontal) > 0 || Mathf.Abs(vertical) > 0f)
-        {
-            float leftThumbStickAngle = Mathf.Atan2(horizontal, vertical) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, leftThumbStickAngle, 0);
+            playerNameText.transform.LookAt(Camera.main.transform);
+            playerNameText.transform.rotation = Camera.main.transform.rotation;
 
-            animator.SetBool("Walk", true);
-            speed = maxMovementSpeed;
-        }
-        else
-        {
-            animator.SetBool("Walk", false);
-            speed = 0;
-        }
+            if (NoOfBananastext != null)
+                NoOfBananastext.text = "Player " + playerNumber + "'s Bananas: " + currentHeldBananas;
 
-        direction = (Vector3.forward * vertical) + (Vector3.right * horizontal) + dodgeVector;
-        transform.position += direction * speed * Time.deltaTime;
+            //Dodge Code
+            dodgeLerpSlowDownTimer += Time.deltaTime;
+            dodgeCooldownTimer -= Time.deltaTime;
 
-        //Aiming Code
-        float rightThumbStickHorizontal = Input.GetAxis($"RightThumbStickHorizontal-{playerNumber}");
-        float rightThumbStickVertical = Input.GetAxis($"RightThumbStickVertical-{playerNumber}");
+            if (Input.GetButtonDown($"X-{playerNumber}") && dodgeCooldownTimer <= 0)
+            {
+                animator.SetBool("Bounce", true);
+                dodgeVector = transform.forward * dodgeForce;
+                dodgeLerpSlowDownTimer = 0;
+                dodgeCooldownTimer = dodgeCooldown;
+            }
+            else
+            {
+                dodgeVector = Vector3.Lerp(dodgeVector, Vector3.zero, dodgeLerpSlowDownTimer);
+            }
 
-        float rightThumbStickAngle = Mathf.Atan2(rightThumbStickVertical, rightThumbStickHorizontal);
+            //Movement Code
+            float horizontal = Input.GetAxis($"Horizontal-{playerNumber}");
+            float vertical = Input.GetAxis($"Vertical-{playerNumber}");
 
-        float x = Mathf.Cos(rightThumbStickAngle) * aimRadius;
-        float y = 0;
-        float z = Mathf.Sin(rightThumbStickAngle) * aimRadius;
+            if (Mathf.Abs(horizontal) > 0 || Mathf.Abs(vertical) > 0f)
+            {
+                float leftThumbStickAngle = Mathf.Atan2(horizontal, vertical) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(0, leftThumbStickAngle, 0);
 
-        if (Mathf.Abs(rightThumbStickHorizontal) > .75 || Mathf.Abs(rightThumbStickVertical) > .75)
-        {
-            aimingSphere.transform.position = transform.position + new Vector3(x, y, z);
-            rightThumbStickLastPosition = aimingSphere.transform.position;
-        }
+                animator.SetBool("Walk", true);
+                speed = maxMovementSpeed;
+            }
+            else
+            {
+                animator.SetBool("Walk", false);
+                speed = 0;
+            }
 
-        //Shooting
-        bananaFireRateTimer += Time.deltaTime;
-        bananaDirection = (aimingSphere.transform.position - transform.position).normalized;
-        if (Input.GetAxis($"RightTrigger-{playerNumber}") > 0 && bananaFireRateTimer > bananaFireRate && currentHeldBananas > 0)
-        {
-            animator.SetBool("Spin", true);
-            GameObject go = Instantiate(bananaPrefab, transform.position + bananaDirection * 1.75f, Quaternion.identity);
-            go.GetComponent<Banana>().Fire(bananaDirection, bananaSpeed, gameObject);
-            bananaFireRateTimer = 0;
-            currentHeldBananas--;
+            direction = (Vector3.forward * vertical) + (Vector3.right * horizontal) + dodgeVector;
+            transform.position += direction * speed * Time.deltaTime;
+
+            //Aiming Code
+            float rightThumbStickHorizontal = Input.GetAxis($"RightThumbStickHorizontal-{playerNumber}");
+            float rightThumbStickVertical = Input.GetAxis($"RightThumbStickVertical-{playerNumber}");
+
+            float rightThumbStickAngle = Mathf.Atan2(rightThumbStickVertical, rightThumbStickHorizontal);
+
+            float x = Mathf.Cos(rightThumbStickAngle) * aimRadius;
+            float y = 0;
+            float z = Mathf.Sin(rightThumbStickAngle) * aimRadius;
+
+            if (Mathf.Abs(rightThumbStickHorizontal) > .75 || Mathf.Abs(rightThumbStickVertical) > .75)
+            {
+                aimingSphere.transform.position = transform.position + new Vector3(x, y, z);
+                rightThumbStickLastPosition = aimingSphere.transform.position;
+            }
+
+            //Shooting
+            bananaFireRateTimer += Time.deltaTime;
+            bananaDirection = (aimingSphere.transform.position - transform.position).normalized;
+            if (Input.GetAxis($"RightTrigger-{playerNumber}") > 0 && bananaFireRateTimer > bananaFireRate && currentHeldBananas > 0)
+            {
+                animator.SetBool("Spin", true);
+                GameObject go = Instantiate(bananaPrefab, transform.position + bananaDirection * 1.75f, Quaternion.identity);
+                go.GetComponent<Banana>().Fire(bananaDirection, bananaSpeed, gameObject);
+                bananaFireRateTimer = 0;
+                currentHeldBananas--;
+            }
         }
     }
 
