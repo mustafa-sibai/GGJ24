@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static int totalAlivePlayers;
     [SerializeField] float startingTimer;
     [SerializeField] TMP_Text winnerText;
     float currentTimer;
@@ -17,13 +18,14 @@ public class GameManager : MonoBehaviour
     {
         currentTimer = startingTimer;
         monkeyControllers = FindObjectsOfType<MonkeyController>();
+        totalAlivePlayers = monkeyControllers.Length;
     }
 
     void Update()
     {
         currentTimer -= Time.deltaTime;
 
-        if (currentTimer <= 0 && !pickWinner)
+        if ((currentTimer <= 0 || totalAlivePlayers <= 1) && !pickWinner)
         {
             MonkeyController monkeyWithMostHp = monkeyControllers[0];
 

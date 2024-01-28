@@ -143,6 +143,7 @@ public class MonkeyController : MonoBehaviour
             animator.SetBool("Die", true);
             audioSource.PlayOneShot(deathAudioClip);
             Destroy(gameObject, 3);
+            GameManager.totalAlivePlayers--;
         }
         else
         {
