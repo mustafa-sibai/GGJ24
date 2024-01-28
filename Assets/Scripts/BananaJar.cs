@@ -41,36 +41,36 @@ public class BananaJar : MonoBehaviour
     private void Update()
     {
         popUpBoxText.text = currentText;
-        numberOfBananasText.text = currentNumberOfBananas.ToString() + " / " + totalNumberOfBananas.ToString();
-        if (currentNumberOfBananas > 0 && enteredBananaJar)
+        numberOfBananasText.text = currentNumberOfBananas.ToString() + "/" + totalNumberOfBananas.ToString();
+
+
+        if (enteredBananaJar)
         {
-            if (retrieveBanana)
+            if (currentNumberOfBananas > 0)
             {
-                currentText = "Press X to Pickup";
-                if (Input.GetButtonDown("Fire3"))
+                currentText = "A to Pickup, B to Return";
+                if (Input.GetButtonDown("Fire1"))
                 {
                     currentNumberOfBananas--;
                     currentPlayer.currentHeldBananas++;
                 }
             }
 
-            if (!retrieveBanana)
+            if (Input.GetButtonDown("Fire2"))
             {
-                currentText = "Press Y to Dropoff";
-                if (Input.GetButtonDown("Fire3"))
+                if (currentPlayer.currentHeldBananas > 0)
                 {
-                    if (currentPlayer.currentHeldBananas > 0)
-                    {
                     currentNumberOfBananas++;
-                        currentPlayer.currentHeldBananas--;
-                    }
+                    currentPlayer.currentHeldBananas--;
                 }
+            }
+
+            if (currentNumberOfBananas <= 0)
+            {
+                currentText = "NO MORE BANANAS";
             }
         }
 
-        if (currentNumberOfBananas <= 0)
-        {
-            currentText = "NO MORE BANANAS";
-        }       
+     
     }
 }
