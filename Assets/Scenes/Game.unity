@@ -263,13 +263,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5681499497926795128, guid: 84b7c8441f160174fa5c6f94cf397f0a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5681499497926795128, guid: 84b7c8441f160174fa5c6f94cf397f0a, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5681499497926795128, guid: 84b7c8441f160174fa5c6f94cf397f0a, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6182162820492919152, guid: 84b7c8441f160174fa5c6f94cf397f0a, type: 3}
       propertyPath: m_Name
       value: Colobus1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6623172231210633951, guid: 84b7c8441f160174fa5c6f94cf397f0a, type: 3}
-      propertyPath: dodgeForce
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -12,7 +12,7 @@ public class MonkeyController : MonoBehaviour
     [SerializeField] Renderer renderer;
 
     [SerializeField] float maxMovementSpeed;
-    [SerializeField] GameObject aimingSphere;
+    [SerializeField] public GameObject aimingSphere;
     [SerializeField] float aimRadius;
 
     [SerializeField] GameObject bananaPrefab;
