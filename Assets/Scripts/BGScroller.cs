@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class BGScroller : MonoBehaviour
 {
     [SerializeField] private float _x, _y, _z;
+    [SerializeField] private float d;
 
     public GameObject WhenToDestroyBanana;
 
@@ -16,7 +17,7 @@ public class BGScroller : MonoBehaviour
         float distace = Vector2.Distance(WhenToDestroyBanana.transform.position, transform.position);
         print(distace);
 
-        if(distace <= 180)
+        if(distace <= d)//180
         {
             Destroy(gameObject);
         }
