@@ -13685,7 +13685,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Work together to @reclaim@ them!
+  m_text: Defeat the other monkeys and @reclaim@ your bananas!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 831dd2ab875f6e14b882a5836d790752, type: 2}
   m_sharedMaterial: {fileID: 5574769431858570190, guid: 831dd2ab875f6e14b882a5836d790752, type: 2}

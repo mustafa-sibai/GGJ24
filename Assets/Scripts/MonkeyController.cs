@@ -9,8 +9,12 @@ public class MonkeyController : MonoBehaviour
     [SerializeField] public int playerNumber;
     [SerializeField] TMP_Text playerNameText;
     [SerializeField] GameObject playerNamePlate;
+    
     [SerializeField] GameObject playerBananaNoPlate;
-    [SerializeField] TMP_Text playerBananaNoPlateText;
+    [SerializeField] TMP_Text playerBananaNoPlateText; 
+    
+    [SerializeField] GameObject playerHealthNoPlate;
+    [SerializeField] TMP_Text playerHealthNoPlateText;
 
 
     [SerializeField] public int health;
@@ -64,20 +68,29 @@ public class MonkeyController : MonoBehaviour
 
     void Update()
     {
+
+        playerNameText.transform.LookAt(Camera.main.transform);
+        playerNameText.transform.rotation = Camera.main.transform.rotation;
+
+        playerNamePlate.transform.LookAt(Camera.main.transform);
+        playerNamePlate.transform.rotation = Camera.main.transform.rotation;
+
+        playerBananaNoPlate.transform.LookAt(Camera.main.transform);
+        playerBananaNoPlate.transform.rotation = Camera.main.transform.rotation;
+
+        playerBananaNoPlateText.transform.LookAt(Camera.main.transform);
+        playerBananaNoPlateText.transform.rotation = Camera.main.transform.rotation;
+
+        playerHealthNoPlate.transform.LookAt(Camera.main.transform);
+        playerHealthNoPlate.transform.rotation = Camera.main.transform.rotation;
+
+
+        playerBananaNoPlateText.text = currentHeldBananas.ToString();
+        playerHealthNoPlateText.text = health.ToString();
+
         if (GameManager.gameStarted)
         {
-            playerNameText.transform.LookAt(Camera.main.transform);
-            playerNameText.transform.rotation = Camera.main.transform.rotation;
-
-            playerNamePlate.transform.LookAt(Camera.main.transform);
-            playerNamePlate.transform.rotation = Camera.main.transform.rotation;
-
-            playerBananaNoPlate.transform.LookAt(Camera.main.transform);
-            playerBananaNoPlate.transform.rotation = Camera.main.transform.rotation;
-
-            playerBananaNoPlateText.transform.LookAt(Camera.main.transform);
-            playerBananaNoPlateText.transform.rotation = Camera.main.transform.rotation;
-            playerBananaNoPlateText.text = currentHeldBananas.ToString();
+           
 
 
             if (NoOfBananastext != null)
