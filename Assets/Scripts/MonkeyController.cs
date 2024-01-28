@@ -132,7 +132,7 @@ public class MonkeyController : MonoBehaviour
 
     public void GetHit()
     {
-        animator.SetTrigger("Spin");
+        animator.SetTrigger("Clicked");
         StartCoroutine(FlashRed());
         audioSource.PlayOneShot(happyAudioClip);
     }
