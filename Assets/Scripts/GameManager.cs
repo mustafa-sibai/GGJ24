@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public static int totalAlivePlayers;
     [SerializeField] float startingTimer;
     [SerializeField] TMP_Text winnerText;
+    [SerializeField] TMP_Text timer;
+
     float currentTimer;
 
     MonkeyController[] monkeyControllers;
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         currentTimer -= Time.deltaTime;
+        timer.text = ((int)currentTimer).ToString();
 
         if ((currentTimer <= 0 || totalAlivePlayers <= 1) && !pickWinner)
         {
@@ -31,7 +34,7 @@ public class GameManager : MonoBehaviour
 
             for (int i = 1; i < monkeyControllers.Length; i++)
             {
-                if (monkeyWithMostHp.health > monkeyControllers[i].health)
+                if (monkeyWithMostHp.health < monkeyControllers[i].health)
                 {
                     monkeyWithMostHp = monkeyControllers[i];
                 }
