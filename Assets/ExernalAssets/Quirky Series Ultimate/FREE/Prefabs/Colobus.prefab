@@ -1,97 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &896548352980815928
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2204516042602185799}
-  - component: {fileID: 2409394871082927131}
-  - component: {fileID: 8669462441916296025}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2204516042602185799
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 896548352980815928}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 3.85, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4992758198669102562}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!20 &2409394871082927131
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 896548352980815928}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_Iso: 200
-  m_ShutterSpeed: 0.005
-  m_Aperture: 16
-  m_FocusDistance: 10
-  m_FocalLength: 50
-  m_BladeCount: 5
-  m_Curvature: {x: 2, y: 11}
-  m_BarrelClipping: 0.25
-  m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!81 &8669462441916296025
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 896548352980815928}
-  m_Enabled: 1
 --- !u!1 &1078126994493592728
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,7 +502,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4885873134110860358}
-  - {fileID: 2204516042602185799}
   - {fileID: 678659275568970032}
   - {fileID: 1331750485156971983}
   m_Father: {fileID: 0}
@@ -639,12 +546,13 @@ MonoBehaviour:
   aimingSphere: {fileID: 3758622880138108573}
   aimRadius: 5
   bananaPrefab: {fileID: 4322098775235463735, guid: 793aa254df9fa1044a5e9fb9658efb96, type: 3}
-  bananaSpeed: 5
-  currentHeldBananas: 1000000
+  bananaSpeed: 50
+  currentHeldBananas: 10
   bananaFireRate: 0.25
   audioSource: {fileID: 6654728619433466464}
   deathAudioClip: {fileID: 8300000, guid: 46780f93d3b00d446814830e5ef355fe, type: 3}
   happyAudioClip: {fileID: 8300000, guid: fbf56d329e7277f41a8532637bc61010, type: 3}
+  NoOfBananastext: {fileID: 0}
 --- !u!54 &3742746399504506524
 Rigidbody:
   m_ObjectHideFlags: 0

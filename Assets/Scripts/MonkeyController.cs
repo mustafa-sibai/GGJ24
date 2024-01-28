@@ -26,6 +26,10 @@ public class MonkeyController : MonoBehaviour
 
     [SerializeField] TMP_Text NoOfBananastext;
 
+    [SerializeField] float dodgeForce;
+    Vector3 dodgeVector;
+    float dodgeTimer = 0;
+
     Rigidbody rb;
     Vector3 bananaDirection;
 
@@ -34,6 +38,8 @@ public class MonkeyController : MonoBehaviour
     float speed;
 
     float bananaFireRateTimer;
+
+    Vector3 direction;
 
     void Start()
     {
@@ -48,7 +54,21 @@ public class MonkeyController : MonoBehaviour
 
     void Update()
     {
-        NoOfBananastext.text = "Player " + playerNumber + "'s Bananas: " + currentHeldBananas;
+        if (NoOfBananastext != null)
+            NoOfBananastext.text = "Player " + playerNumber + "'s Bananas: " + currentHeldBananas;
+
+        //Dodge Code
+        dodgeTimer += Time.deltaTime;
+        if (Input.GetButtonDown($"X-{playerNumber}"))
+        {
+            dodgeVector = transform.forward * dodgeForce;
+            dodgeTimer = 0;
+        }
+        else
+        {
+            dodgeVector = Vector3.Lerp(dodgeVector, Vector3.zero, dodgeTimer);
+        }
+
         //Movement Code
         float horizontal = Input.GetAxis($"Horizontal-{playerNumber}");
         float vertical = Input.GetAxis($"Vertical-{playerNumber}");
@@ -67,10 +87,8 @@ public class MonkeyController : MonoBehaviour
             speed = 0;
         }
 
-        transform.position +=
-            (Vector3.forward * vertical * speed +
-            Vector3.right * horizontal * speed)
-            * Time.deltaTime;
+        direction = (Vector3.forward * vertical) + (Vector3.right * horizontal) + dodgeVector;
+        transform.position += direction * speed * Time.deltaTime;
 
         //Aiming Code
         float rightThumbStickHorizontal = Input.GetAxis($"RightThumbStickHorizontal-{playerNumber}");
@@ -93,7 +111,7 @@ public class MonkeyController : MonoBehaviour
         bananaDirection = (aimingSphere.transform.position - transform.position).normalized;
         if (Input.GetAxis($"RightTrigger-{playerNumber}") > 0 && bananaFireRateTimer > bananaFireRate && currentHeldBananas > 0)
         {
-            GameObject go = Instantiate(bananaPrefab, transform.position + bananaDirection, Quaternion.identity);
+            GameObject go = Instantiate(bananaPrefab, transform.position + bananaDirection * 1.75f, Quaternion.identity);
             go.GetComponent<Banana>().Fire(bananaDirection, bananaSpeed, gameObject);
             bananaFireRateTimer = 0;
             currentHeldBananas--;
