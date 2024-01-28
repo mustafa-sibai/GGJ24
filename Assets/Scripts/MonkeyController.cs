@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class MonkeyController : MonoBehaviour
 {
+    [SerializeField] ParticleSystem particleSystem;
     [SerializeField] public int playerNumber;
     [SerializeField] TMP_Text playerNameText;
 
@@ -144,6 +145,7 @@ public class MonkeyController : MonoBehaviour
     public void GetHit()
     {
         health--;
+        particleSystem.Play();
 
         if (health <= 0)
         {
