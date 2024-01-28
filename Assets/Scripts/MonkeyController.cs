@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class MonkeyController : MonoBehaviour
 {
-    [SerializeField] int playerNumber;
+    [SerializeField] public int playerNumber;
+    [SerializeField] TMP_Text playerNameText;
 
-    [SerializeField] int health;
+    [SerializeField] public int health;
 
     [SerializeField] Renderer renderer;
 
@@ -45,6 +46,7 @@ public class MonkeyController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        playerNameText.text = $"Player {playerNumber}";
     }
 
     void FixedUpdate()
@@ -54,6 +56,8 @@ public class MonkeyController : MonoBehaviour
 
     void Update()
     {
+        playerNameText.transform.LookAt(Camera.main.transform);
+
         if (NoOfBananastext != null)
             NoOfBananastext.text = "Player " + playerNumber + "'s Bananas: " + currentHeldBananas;
 
@@ -61,7 +65,7 @@ public class MonkeyController : MonoBehaviour
         dodgeTimer += Time.deltaTime;
         if (Input.GetButtonDown($"X-{playerNumber}"))
         {
-            animator.SetTrigger("Bounce");
+            animator.SetBool("Bounce", true);
             dodgeVector = transform.forward * dodgeForce;
             dodgeTimer = 0;
         }
@@ -112,7 +116,7 @@ public class MonkeyController : MonoBehaviour
         bananaDirection = (aimingSphere.transform.position - transform.position).normalized;
         if (Input.GetAxis($"RightTrigger-{playerNumber}") > 0 && bananaFireRateTimer > bananaFireRate && currentHeldBananas > 0)
         {
-            animator.SetTrigger("Spin");
+            animator.SetBool("Spin", true);
             GameObject go = Instantiate(bananaPrefab, transform.position + bananaDirection * 1.75f, Quaternion.identity);
             go.GetComponent<Banana>().Fire(bananaDirection, bananaSpeed, gameObject);
             bananaFireRateTimer = 0;
@@ -132,9 +136,35 @@ public class MonkeyController : MonoBehaviour
 
     public void GetHit()
     {
-        animator.SetTrigger("Clicked");
-        StartCoroutine(FlashRed());
-        audioSource.PlayOneShot(happyAudioClip);
+        health--;
+
+        if (health <= 0)
+        {
+            animator.SetBool("Die", true);
+            audioSource.PlayOneShot(deathAudioClip);
+            Destroy(gameObject, 3);
+        }
+        else
+        {
+            animator.SetBool("Clicked", true);
+            StartCoroutine(FlashRed());
+            audioSource.PlayOneShot(happyAudioClip);
+        }
+    }
+
+    public void TurnOffSpinAnimation()
+    {
+        animator.SetBool("Spin", false);
+    }
+
+    public void TurnOffBounceAnimation()
+    {
+        animator.SetBool("Bounce", false);
+    }
+
+    public void TurnOffClickedAnimation()
+    {
+        animator.SetBool("Clicked", false);
     }
 
     public void CollectBanana()
@@ -153,13 +183,6 @@ public class MonkeyController : MonoBehaviour
         }
 
         yield return null;
-    }
-
-    public void Die()
-    {
-        animator.SetBool("Die", true);
-        audioSource.PlayOneShot(deathAudioClip);
-        Destroy(gameObject, 3);
     }
 
     void OnDrawGizmos()

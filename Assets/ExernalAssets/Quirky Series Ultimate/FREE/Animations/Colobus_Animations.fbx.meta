@@ -144,7 +144,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.546875
+        functionName: TurnOffBounceAnimation
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 92961ed3be905b7489a94d38ed79b8a8, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -173,7 +180,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.5538195
+        functionName: TurnOffClickedAnimation
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 92961ed3be905b7489a94d38ed79b8a8, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -202,14 +216,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0
-        functionName: Die
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 92961ed3be905b7489a94d38ed79b8a8, type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -557,7 +564,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.4982639
+        functionName: TurnOffSpinAnimation
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 92961ed3be905b7489a94d38ed79b8a8, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
