@@ -550,18 +550,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6623172231210633951, guid: 84b7c8441f160174fa5c6f94cf397f0a, type: 3}
-      propertyPath: playerBananaNoPlate
-      value: 
-      objectReference: {fileID: 1826741390}
-    - target: {fileID: 6623172231210633951, guid: 84b7c8441f160174fa5c6f94cf397f0a, type: 3}
-      propertyPath: playerBananaNoPlateText
-      value: 
-      objectReference: {fileID: 1315037177}
-    - target: {fileID: 7193653211064389747, guid: 84b7c8441f160174fa5c6f94cf397f0a, type: 3}
-      propertyPath: m_Name
-      value: PlayerBf
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13585,17 +13573,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1304889256}
   m_CullTransparentMesh: 1
---- !u!114 &1315037177 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5537420873120073787, guid: 84b7c8441f160174fa5c6f94cf397f0a, type: 3}
-  m_PrefabInstance: {fileID: 20779012}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1332619234
 GameObject:
   m_ObjectHideFlags: 0
@@ -16872,11 +16849,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1824964930}
   m_CullTransparentMesh: 1
---- !u!1 &1826741390 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2295518300901264795, guid: 84b7c8441f160174fa5c6f94cf397f0a, type: 3}
-  m_PrefabInstance: {fileID: 20779012}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1850785881
 GameObject:
   m_ObjectHideFlags: 0

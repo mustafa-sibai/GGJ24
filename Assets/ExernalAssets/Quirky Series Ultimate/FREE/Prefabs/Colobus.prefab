@@ -1144,6 +1144,8 @@ MonoBehaviour:
   playerNumber: 1
   playerNameText: {fileID: 107358380252085845}
   playerNamePlate: {fileID: 4221666980924302849}
+  playerBananaNoPlate: {fileID: 2295518300901264795}
+  playerBananaNoPlateText: {fileID: 5537420873120073787}
   health: 10
   renderer: {fileID: 5656757442522119580}
   maxMovementSpeed: 10
@@ -6145,7 +6147,7 @@ GameObject:
   - component: {fileID: 1272778349925457828}
   - component: {fileID: 232785426780579860}
   m_Layer: 0
-  m_Name: Image
+  m_Name: PlayerBf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
