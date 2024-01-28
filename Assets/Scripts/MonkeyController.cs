@@ -61,6 +61,7 @@ public class MonkeyController : MonoBehaviour
         dodgeTimer += Time.deltaTime;
         if (Input.GetButtonDown($"X-{playerNumber}"))
         {
+            animator.SetTrigger("Bounce");
             dodgeVector = transform.forward * dodgeForce;
             dodgeTimer = 0;
         }
@@ -111,6 +112,7 @@ public class MonkeyController : MonoBehaviour
         bananaDirection = (aimingSphere.transform.position - transform.position).normalized;
         if (Input.GetAxis($"RightTrigger-{playerNumber}") > 0 && bananaFireRateTimer > bananaFireRate && currentHeldBananas > 0)
         {
+            animator.SetTrigger("Spin");
             GameObject go = Instantiate(bananaPrefab, transform.position + bananaDirection * 1.75f, Quaternion.identity);
             go.GetComponent<Banana>().Fire(bananaDirection, bananaSpeed, gameObject);
             bananaFireRateTimer = 0;
@@ -130,7 +132,7 @@ public class MonkeyController : MonoBehaviour
 
     public void GetHit()
     {
-        animator.SetTrigger("Spin");
+        animator.SetTrigger("Clicked");
         StartCoroutine(FlashRed());
         audioSource.PlayOneShot(happyAudioClip);
     }
