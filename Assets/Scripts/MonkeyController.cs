@@ -28,8 +28,10 @@ public class MonkeyController : MonoBehaviour
     [SerializeField] TMP_Text NoOfBananastext;
 
     [SerializeField] float dodgeForce;
+    [SerializeField] float dodgeCooldown;
     Vector3 dodgeVector;
-    float dodgeTimer = 0;
+    float dodgeLerpSlowDownTimer = 0;
+    float dodgeCooldownTimer = 0;
 
     Rigidbody rb;
     Vector3 bananaDirection;
@@ -47,6 +49,7 @@ public class MonkeyController : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         playerNameText.text = $"Player {playerNumber}";
+        dodgeCooldownTimer = dodgeCooldown;
     }
 
     void FixedUpdate()
@@ -63,16 +66,19 @@ public class MonkeyController : MonoBehaviour
             NoOfBananastext.text = "Player " + playerNumber + "'s Bananas: " + currentHeldBananas;
 
         //Dodge Code
-        dodgeTimer += Time.deltaTime;
-        if (Input.GetButtonDown($"X-{playerNumber}"))
+        dodgeLerpSlowDownTimer += Time.deltaTime;
+        dodgeCooldownTimer -= Time.deltaTime;
+
+        if (Input.GetButtonDown($"X-{playerNumber}") && dodgeCooldownTimer <= 0)
         {
             animator.SetBool("Bounce", true);
             dodgeVector = transform.forward * dodgeForce;
-            dodgeTimer = 0;
+            dodgeLerpSlowDownTimer = 0;
+            dodgeCooldownTimer = dodgeCooldown;
         }
         else
         {
-            dodgeVector = Vector3.Lerp(dodgeVector, Vector3.zero, dodgeTimer);
+            dodgeVector = Vector3.Lerp(dodgeVector, Vector3.zero, dodgeLerpSlowDownTimer);
         }
 
         //Movement Code
