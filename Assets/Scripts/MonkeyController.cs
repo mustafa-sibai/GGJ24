@@ -57,6 +57,7 @@ public class MonkeyController : MonoBehaviour
     void Update()
     {
         playerNameText.transform.LookAt(Camera.main.transform);
+        playerNameText.transform.rotation = Camera.main.transform.rotation;
 
         if (NoOfBananastext != null)
             NoOfBananastext.text = "Player " + playerNumber + "'s Bananas: " + currentHeldBananas;
