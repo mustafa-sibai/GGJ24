@@ -7,8 +7,17 @@ public class GameManager : MonoBehaviour
 {
     public static int totalAlivePlayers;
     [SerializeField] float startingTimer;
+
     [SerializeField] TMP_Text winnerText;
     [SerializeField] TMP_Text timer;
+
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip startAudioClip;
+    [SerializeField] AudioClip musicAudioClip;
+
+    public static bool gameStarted = false;
+
+    float startTimer = 4;
 
     float currentTimer;
 
@@ -21,28 +30,52 @@ public class GameManager : MonoBehaviour
         currentTimer = startingTimer;
         monkeyControllers = FindObjectsOfType<MonkeyController>();
         totalAlivePlayers = monkeyControllers.Length;
+
+        audioSource.clip = startAudioClip;
+        audioSource.Play();
     }
 
     void Update()
     {
-        currentTimer -= Time.deltaTime;
-        timer.text = ((int)currentTimer).ToString();
+        startTimer -= Time.deltaTime * 0.75f;
 
-        if ((currentTimer <= 0 || totalAlivePlayers <= 1) && !pickWinner)
+        if (startTimer <= 0 && !gameStarted)
         {
-            MonkeyController monkeyWithMostHp = monkeyControllers[0];
+            gameStarted = true;
+            audioSource.clip = musicAudioClip;
+            audioSource.loop = true;
+            audioSource.Play();
+        }
 
-            for (int i = 1; i < monkeyControllers.Length; i++)
+        if (gameStarted)
+        {
+            currentTimer -= Time.deltaTime;
+
+            if (currentTimer <= 0)
+                currentTimer = 0;
+
+            timer.text = ((int)currentTimer).ToString();
+
+            if ((currentTimer <= 0 || totalAlivePlayers <= 1) && !pickWinner)
             {
-                if (monkeyWithMostHp.health < monkeyControllers[i].health)
-                {
-                    monkeyWithMostHp = monkeyControllers[i];
-                }
-            }
+                MonkeyController monkeyWithMostHp = monkeyControllers[0];
 
-            winnerText.text = $"Winner is {monkeyWithMostHp.playerNumber}";
-            winnerText.gameObject.SetActive(true);
-            pickWinner = true;
+                for (int i = 1; i < monkeyControllers.Length; i++)
+                {
+                    if (monkeyWithMostHp.health < monkeyControllers[i].health)
+                    {
+                        monkeyWithMostHp = monkeyControllers[i];
+                    }
+                }
+
+                winnerText.text = $"Winner is {monkeyWithMostHp.playerNumber}";
+                winnerText.gameObject.SetActive(true);
+                pickWinner = true;
+            }
+        }
+        else
+        {
+            timer.text = ((int)startTimer).ToString();
         }
     }
 }
