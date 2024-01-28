@@ -6388,9 +6388,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbf6d2dec7203548bc26af29b706815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _x: -50
-  _y: -35
+  _x: -5
+  _y: -2
   _z: 0
+  d: 5
+  WhenToDestroyBanana: {fileID: 0}
 --- !u!1 &7402062672432104244
 GameObject:
   m_ObjectHideFlags: 0
